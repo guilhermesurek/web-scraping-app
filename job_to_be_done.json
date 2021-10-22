@@ -1,0 +1,41 @@
+{
+    "Leroy_Merlin_01": {
+        "name": "Leroy Merlin",
+        "categorias": {
+            "1": "Construcao",
+            "2": "Materiais Basicos",
+            "3": "Cimento",
+            "4": ""
+        },
+        "url": "https://www.leroymerlin.com.br/api/boitata/v1/categories/67c4a6736f44e69d84093b50/products",
+        "headers": {
+            "content-type":"text",
+            "sec-ch-ua": "\"Chromium\";v=\"94\", \"Google Chrome\";v=\"94\", \";Not A Brand\";v=\"99",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "Windows",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36"
+        },
+        "translate": {
+            "id": "seller_product_id",
+            "name": "product_name",
+            "picture": "product_img_url",
+            "unit": "product_unit",
+            "url": "product_url",
+            "price": "product_price",
+            "brand": "product_brand",
+            "seller_id": "seller_id",
+            "seller_name": "seller_name",
+            "category_1": "category_1",
+            "category_2": "category_2",
+            "category_3": "category_3",
+            "seller_source_url": "seller_source_url"
+        },
+        "schema": ["seller_id", "seller_name", "category_1", "category_2", "category_3", "category_4",
+                "seller_source_url", "seller_product_id", "product_name", "product_img_url", "product_unit", 
+                "product_url", "product_price", "product_brand", "created_at", "updated_at"],
+        "target_table": "WBSC_FACT_PRODUCT_PRICES"
+    }
+}
