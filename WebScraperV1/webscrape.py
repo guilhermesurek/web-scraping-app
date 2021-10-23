@@ -31,8 +31,9 @@ class WebScrapingRequest():
         return self.output
 
 class WebScrapingProcess():
-    def __init__(self, input, translation=None):
+    def __init__(self, input, meta_data, translation=None):
         self.input = self._input_check(input)
+        self.meta_data = meta_data
         self.translation = translation
         self.preprocessed = None
         self.translated = None
@@ -47,7 +48,7 @@ class WebScrapingProcess():
     def _translate(self):
         if self.translation:
             result = []
-            for item in self.input:
+            for item in self.preprocessed:
                 aux = {}
                 for k,v in self.translation.items():
                     aux[v] = item.get(k, None)
@@ -93,14 +94,15 @@ class WebScrapingDBSchema():
 
 class WebScrapingProcess_LM01(WebScrapingProcess):
     def _preprocess(self):
-        input = self.input.copy()
+        input = self.input.get('products').copy()
         for i, _ in enumerate(input):
-            input[i]['seller_id'] = 1
-            input[i]['seller_name'] = 'Leroy Merlin'
-            input[i]['category_1'] = 'Construcao'
-            input[i]['category_2'] = 'Materiais Basicos'
-            input[i]['category_3'] = 'Cimento'
-            input[i]['seller_source_url'] = 'https://www.leroymerlin.com.br/api/boitata/v1/categories/67c4a6736f44e69d84093b50/products'
+            input[i]['seller_id'] = self.meta_data['id']
+            input[i]['seller_name'] = self.meta_data['name']
+            input[i]['category_1'] = self.meta_data['categorias']['1']
+            input[i]['category_2'] = self.meta_data['categorias']['2']
+            input[i]['category_3'] = self.meta_data['categorias']['3']
+            input[i]['category_4'] = self.meta_data['categorias']['4']
+            input[i]['seller_source_url'] = self.meta_data['url']
             input[i]['unit'] = 'un' if input[i].get('unit', 'un') == 'cada' else input[i].get('unit', 'un')
             input[i]['id'] = str(input[i].get('id'))
             try:

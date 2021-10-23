@@ -3,3 +3,6 @@
 local.settings.json
 test
 .venv
+
+*.ipynb
+*.sql
